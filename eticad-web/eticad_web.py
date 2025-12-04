@@ -55,8 +55,10 @@ def _render_form(error=None, svg=None,
     )
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index():
+    return render_template("index.html")
+
     if request.method == "GET":
         # Sayfa ilk açılış: varsayılan değerlerle otomatik önizleme
         width = DEFAULT_WIDTH
@@ -184,6 +186,7 @@ if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
 
    
+
 
 
 
