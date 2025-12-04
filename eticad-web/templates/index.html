@@ -344,12 +344,13 @@
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("/static/sw.js").catch(function (err) {
+      navigator.serviceWorker.register("/sw.js").catch(function (err) {
         console.log("Service worker kaydı başarısız:", err);
       });
     });
   }
 </script>
+
 <script>
   // ANDROID için: beforeinstallprompt olayını yakala
   let deferredPrompt = null;
@@ -423,6 +424,7 @@
 
 </body>
 </html>
+
 
 
 
