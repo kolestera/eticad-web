@@ -354,8 +354,8 @@ def build_svg_preview(width_mm, height_mm, seg1, seg2, hole_mode):
         return x_n, y_n
 
     # Sabit piksel boyutlu önizleme penceresi
-    pixel_width = 420
-    pixel_height = 220
+    pixel_width = 690
+    pixel_height = 340
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" '
@@ -409,3 +409,4 @@ def build_svg_preview(width_mm, height_mm, seg1, seg2, hole_mode):
 
     parts.append("</g></svg>")
     return "".join(parts)
+
