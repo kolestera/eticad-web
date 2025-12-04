@@ -15,6 +15,9 @@ DEFAULT_H1 = 40.0
 DEFAULT_H2 = 20.0
 DEFAULT_HOLES = 4
 
+DESKTOP_DOWNLOAD_URL = "https://ornek-link.com/Eticad_v1.0.0.exe"
+# ↑ Burayı kendi .exe indirme adresinle değiştireceksin
+
 
 def _render_form(error=None, svg=None,
                  width=None, height=None,
@@ -169,11 +172,19 @@ def preview():
         holes=holes,
     )
 
+@app.route("/download")
+def download_page():
+    return render_template(
+        "download.html",
+        desktop_download_url=DESKTOP_DOWNLOAD_URL,
+    )
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
 
    
+
 
 
 
