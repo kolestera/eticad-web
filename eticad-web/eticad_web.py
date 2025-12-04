@@ -13,7 +13,7 @@ DEFAULT_LINE1 = "ETICAD"
 DEFAULT_LINE2 = "NECATI PEHLIVAN"
 DEFAULT_H1 = 40.0
 DEFAULT_H2 = 20.0
-DEFAULT_HOLES = 2
+DEFAULT_HOLES = 4
 
 
 def _render_form(error=None, svg=None,
@@ -174,5 +174,6 @@ if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
 
    
+
 
 
