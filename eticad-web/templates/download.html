@@ -455,12 +455,46 @@
     });
   }
 </script>
+<script>
+  function showMessage(text) {
+    const msg = document.getElementById("install-message");
+    if (!msg) return;
+    msg.style.display = "block";
+    msg.textContent = text;
+  }
+
+  const btnWindows = document.getElementById("install-windows");
+  if (btnWindows) {
+    btnWindows.addEventListener("click", function() {
+      window.location.href = "{{ url_for('download_page') }}";
+    });
+  }
+
+  const btnAndroid = document.getElementById("install-android");
+  if (btnAndroid) {
+    btnAndroid.addEventListener("click", function() {
+      showMessage(
+        "Android için: Chrome menüsünden (⋮) 'Ana ekrana ekle' veya 'Uygulama yükle' seçeneğini kullanabilirsin."
+      );
+    });
+  }
+
+  const btnIos = document.getElementById("install-ios");
+  if (btnIos) {
+    btnIos.addEventListener("click", function() {
+      showMessage(
+        "iPhone için: Safari'de paylaş simgesine dokun → 'Ana Ekrana Ekle' seçeneğini kullan."
+      );
+    });
+  }
+</script>
 
 
 
 
 </body>
 </html>
+
 
 
 
