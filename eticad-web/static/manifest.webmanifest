@@ -1,11 +1,14 @@
 {
-  "name": "ETICAD",
-  "short_name": "Eticad",
+  "id": "/?source=pwa",
+  "name": "EtiCAD - DXF Etiket Üretici",
+  "short_name": "EtiCAD",
+  "description": "Lazer kesim etiketleri için hızlı DXF oluşturma uygulaması.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0f766e",
   "theme_color": "#0f766e",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/static/icons/eticad-32.png",
@@ -23,5 +26,26 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/static/1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/static/2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+ {
+      "src": "/static/3.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["productivity", "utilities"]
 }
