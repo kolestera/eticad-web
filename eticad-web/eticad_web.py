@@ -7,13 +7,13 @@ from eticad_core import layout_label, build_single_dxf, build_svg_preview
 app = Flask(__name__)
 
 # Varsayılanlar (burayı değiştirmen yeterli)
-DEFAULT_WIDTH = 200.0
+DEFAULT_WIDTH = 300.0
 DEFAULT_HEIGHT = 80.0
 DEFAULT_LINE1 = "ETICAD"
 DEFAULT_LINE2 = "NECATI PEHLIVAN"
 DEFAULT_H1 = 40.0
 DEFAULT_H2 = 20.0
-DEFAULT_HOLES = 0
+DEFAULT_HOLES = 2
 
 
 def _render_form(error=None, svg=None,
@@ -174,4 +174,5 @@ if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
 
    
+
 
