@@ -98,6 +98,33 @@
       color: #0f766e;
       text-decoration: none;
     }
+.preview-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  max-width: 640px;     /* Önizleme kutusunun maksimum genişliği */
+  height: 220px;        /* Sabit yükseklik */
+  background: #e5e7eb;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  overflow: hidden;     /* Taşan kısmı göstermesin */
+}
+
+/* SVG’yi kutunun içine sığacak şekilde kısıtla */
+.preview-frame svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+    
   </style>
 </head>
 <body>
@@ -174,3 +201,4 @@
 </div>
 </body>
 </html>
+
