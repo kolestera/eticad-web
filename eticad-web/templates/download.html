@@ -70,24 +70,55 @@
 
     .download-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1.4fr 0.9fr;
+      grid-template-columns: 1.2fr 1.5fr 1fr;
       gap: 24px;
       align-items: flex-start;
     }
+
+    /* GALERİ */
     .download-screenshot {
       background: #e5e7eb;
       border-radius: 8px;
-      overflow: hidden;
       border: 1px solid #cbd5e1;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .download-screenshot-main {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
       cursor: zoom-in;
     }
-    .download-screenshot img {
+    .download-screenshot-main img {
       width: 100%;
       display: block;
       transition: transform 0.25s ease-out;
     }
-    .download-screenshot:hover img {
-      transform: scale(1.35);
+    .download-screenshot-main:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-thumbs {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+    .gallery-thumbs img {
+      width: 30%;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.7;
+      transition: border-color 0.15s ease-out, opacity 0.15s ease-out, transform 0.15s ease-out;
+    }
+    .gallery-thumbs img:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+    .gallery-thumbs img.active {
+      border-color: #0f766e;
+      opacity: 1;
     }
 
     .download-text h2 {
@@ -147,9 +178,71 @@
       text-decoration: none;
     }
 
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: zoom-out;
+      padding: 20px;
+    }
+    .lightbox-inner {
+      position: relative;
+      max-width: 95vw;
+      max-height: 90vh;
+    }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      animation: lbzoom 0.25s ease-out;
+      display: block;
+    }
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15,118,110,0.9);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .lb-prev {
+      left: -48px;
+    }
+    .lb-next {
+      right: -48px;
+    }
+    .lb-nav:hover {
+      background: rgba(15,118,110,1);
+    }
+
+    @keyframes lbzoom {
+      from { transform: scale(0.7); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
     @media (max-width: 800px) {
       .download-grid {
         grid-template-columns: 1fr;
+      }
+      .lb-prev {
+        left: 8px;
+      }
+      .lb-next {
+        right: 8px;
       }
     }
     @media (max-width: 640px) {
@@ -169,20 +262,30 @@
       <img src="{{ url_for('static', filename='LOGO.gif') }}" alt="ETICAD Logo">
     </div>
     <form id="share-form" class="share-form">
-      <span></span>
+      <span>Sayfayı e-posta ile paylaş:</span>
       <input type="email" id="share-email" placeholder="E-posta adresi" required>
-      <button type="submit">Paylaş</button>
+      <button type="submit">Gönder</button>
     </form>
   </div>
 
   <h1>ETICAD Masaüstü Sürümü</h1>
   <div class="sub">
-    Lazer kesim etiket için hızlı DXF üretimi
+    Lazer kesim ve mekanik tesisat etiketleri için hızlı DXF üretimi
   </div>
 
   <div class="download-grid">
+    <!-- GALERİ -->
     <div class="download-screenshot">
-      <img src="{{ url_for('static', filename='eticad_desktop.PNG') }}" alt="ETICAD Masaüstü ekran görüntüsü">
+      <div class="download-screenshot-main">
+        <img id="gallery-main"
+             src="{{ url_for('static', filename='1.png') }}"
+             alt="ETICAD ekran görüntüsü">
+      </div>
+      <div class="gallery-thumbs">
+        <img class="thumb active" data-index="0" src="{{ url_for('static', filename='1.png') }}" alt="Önizleme 1">
+        <img class="thumb" data-index="1" src="{{ url_for('static', filename='2.png') }}" alt="Önizleme 2">
+        <img class="thumb" data-index="2" src="{{ url_for('static', filename='3.png') }}" alt="Önizleme 3">
+      </div>
     </div>
 
     <div class="download-text">
@@ -209,7 +312,7 @@
       <p><strong>Sürüm:</strong> ETICAD v1.0.0</p>
       <p><strong>Platform:</strong> Windows (64-bit)</p>
       <p><strong>Kurulum:</strong> Kurulum gerektirmez, tek .exe dosyası</p>
-      <a class="download-btn" href="{{ desktop_download_url }}">Masaüstü Sürümü İndir</a>
+      <a class="download-btn" href="{{ url_for('static', filename='Eticad_v1.0.0.exe') }}">Masaüstü Sürümü İndir</a>
       <p style="margin-top:10px; font-size:12px; color:#6b7280;">
         Not: Bazı antivirüs yazılımları, internetten indirilen .exe dosyaları için uyarı verebilir.
         Dosya sadece yerel DXF üretimi yapar, internet bağlantısı kullanmaz.
@@ -223,28 +326,97 @@
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <div class="lightbox-inner" onclick="event.stopPropagation();">
+    <button class="lb-nav lb-prev" type="button">&#10094;</button>
+    <img id="lightbox-img" src="" alt="ETICAD ekran görüntüsü">
+    <button class="lb-nav lb-next" type="button">&#10095;</button>
+  </div>
+</div>
+
 <script>
 (function () {
-  const form = document.getElementById('share-form');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const emailInput = document.getElementById('share-email');
-    if (!emailInput) return;
-    const email = emailInput.value.trim();
-    if (!email) return;
-    const subject = encodeURIComponent('ETICAD bağlantısı');
-    const body = encodeURIComponent(
-      'Merhaba,\n\nETICAD masaüstü indirme sayfasını seninle paylaşıyorum:\n' +
-      window.location.href + '\n\n'
-    );
-    window.location.href = 'mailto:' + encodeURIComponent(email) +
-      '?subject=' + subject + '&body=' + body;
+  // E-posta ile paylaş
+  const shareForm = document.getElementById('share-form');
+  if (shareForm) {
+    shareForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('share-email');
+      if (!emailInput) return;
+      const email = emailInput.value.trim();
+      if (!email) return;
+      const subject = encodeURIComponent('ETICAD bağlantısı');
+      const body = encodeURIComponent(
+        'Merhaba,\n\nETICAD masaüstü indirme sayfasını seninle paylaşıyorum:\n' +
+        window.location.href + '\n\n'
+      );
+      window.location.href = 'mailto:' + encodeURIComponent(email) +
+        '?subject=' + subject + '&body=' + body;
+    });
+  }
+
+  // GALERİ + LIGHTBOX
+  const images = [
+    "{{ url_for('static', filename='1.png') }}",
+    "{{ url_for('static', filename='2.png') }}",
+    "{{ url_for('static', filename='3.png') }}"
+  ];
+
+  let currentIndex = 0;
+  const mainImg = document.getElementById('gallery-main');
+  const thumbs = document.querySelectorAll('.gallery-thumbs img');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const btnPrev = document.querySelector('.lb-prev');
+  const btnNext = document.querySelector('.lb-next');
+
+  function setImage(index) {
+    currentIndex = (index + images.length) % images.length;
+    const src = images[currentIndex];
+    if (mainImg) mainImg.src = src;
+    if (lbImg) lbImg.src = src;
+    thumbs.forEach(function (t) {
+      t.classList.toggle('active', parseInt(t.dataset.index, 10) === currentIndex);
+    });
+  }
+
+  thumbs.forEach(function (thumb) {
+    thumb.addEventListener('click', function () {
+      const idx = parseInt(this.dataset.index, 10) || 0;
+      setImage(idx);
+    });
   });
+
+  if (mainImg && lightbox) {
+    mainImg.addEventListener('click', function () {
+      lbImg.src = images[currentIndex];
+      lightbox.style.display = 'flex';
+    });
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('click', function () {
+      lightbox.style.display = 'none';
+    });
+  }
+
+  if (btnPrev) {
+    btnPrev.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setImage(currentIndex - 1);
+    });
+  }
+  if (btnNext) {
+    btnNext.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setImage(currentIndex + 1);
+    });
+  }
+
+  // ilk görseli ayarla
+  setImage(0);
 })();
 </script>
 </body>
 </html>
-
-
-
