@@ -352,20 +352,6 @@
 </script>
 
 <script>
-  // ANDROID için: beforeinstallprompt olayını yakala
-  let deferredPrompt = null;
-
-  window.addEventListener("beforeinstallprompt", function(e) {
-    // Chrome'un kendi otomatik banner'ını engelle
-    e.preventDefault();
-    deferredPrompt = e;
-    const msg = document.getElementById("install-message");
-    if (msg) {
-      msg.style.display = "block";
-      msg.textContent = "Android için yukarıdaki Android butonuna tıklayarak ana ekrana ekleyebilirsin.";
-    }
-  });
-
   function showMessage(text) {
     const msg = document.getElementById("install-message");
     if (!msg) return;
@@ -373,48 +359,20 @@
     msg.textContent = text;
   }
 
-  // Android butonu
   const btnAndroid = document.getElementById("install-android");
   if (btnAndroid) {
-    btnAndroid.addEventListener("click", async function() {
-      const ua = navigator.userAgent || "";
-      const isAndroid = /Android/i.test(ua);
-
-      if (!isAndroid) {
-        showMessage("Bu buton Android cihazlar içindir. Şu anda farklı bir cihaz kullanıyorsun.");
-        return;
-      }
-
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const choice = await deferredPrompt.userChoice;
-        if (choice.outcome === "accepted") {
-          showMessage("ETICAD ana ekrana eklendi.");
-        } else {
-          showMessage("Dilersen daha sonra da ana ekrana ekleyebilirsin.");
-        }
-        deferredPrompt = null;
-      } else {
-        showMessage("Tarayıcının menüsünden 'Ana ekrana ekle' seçeneğini kullanabilirsin.");
-      }
+    btnAndroid.addEventListener("click", function() {
+      showMessage(
+        "Android için: Chrome menüsünden (⋮) 'Ana ekrana ekle' veya 'Uygulama yükle' seçeneğini kullanabilirsin."
+      );
     });
   }
 
-  // iOS butonu
   const btnIos = document.getElementById("install-ios");
   if (btnIos) {
     btnIos.addEventListener("click", function() {
-      const ua = navigator.userAgent || "";
-      const isIOS = /iPhone|iPad|iPod/i.test(ua);
-
-      if (!isIOS) {
-        showMessage("Bu buton iPhone/iPad cihazlar içindir. Şu anda farklı bir cihaz kullanıyorsun.");
-        return;
-      }
-
-      // iOS'ta programatik ekleme YOK → kullanıcıya net talimat veriyoruz
       showMessage(
-        "iPhone'da ana ekrana eklemek için: Safari'de paylaş simgesine dokun → 'Ana Ekrana Ekle'yi seç."
+        "iPhone için: Safari'de paylaş simgesine dokun → 'Ana Ekrana Ekle' seçeneğini kullan."
       );
     });
   }
@@ -422,8 +380,10 @@
 
 
 
+
 </body>
 </html>
+
 
 
 
