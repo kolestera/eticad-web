@@ -329,7 +329,24 @@
       </p>
     </div>
   </div>
-
+<div class="install-block">
+  <div class="install-title">Uygulamayı cihazına ekle</div>
+  <div class="install-buttons">
+    <button id="install-windows" class="install-btn">
+      <img src="{{ url_for('static', filename='icons/windows.png') }}" alt="Windows" />
+      <span>Windows</span>
+    </button>
+    <button id="install-android" class="install-btn">
+      <img src="{{ url_for('static', filename='icons/android.png') }}" alt="Android" />
+      <span>Android</span>
+    </button>
+    <button id="install-ios" class="install-btn">
+      <img src="{{ url_for('static', filename='icons/ios.png') }}" alt="iOS" />
+      <span>iOS</span>
+    </button>
+  </div>
+  <div id="install-message" class="install-message" style="display:none;"></div>
+</div>
   <div class="footer">
     Online EtiCAD sürümünü kullanmak için
     <a href="{{ url_for('index') }}">buraya tıklayabilirsin</a>.
@@ -444,5 +461,6 @@
 
 </body>
 </html>
+
 
 
