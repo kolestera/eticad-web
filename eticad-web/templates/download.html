@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8">
-  <title>ETICAD - Masaüstü Sürüm İndirme</title>
+  <title>EtiCAD - Masaüstü Sürüm İndirme</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -259,18 +259,18 @@
 
   <div class="header-bar">
     <div class="logo-box">
-      <img src="{{ url_for('static', filename='LOGO.gif') }}" alt="ETICAD Logo">
+      <img src="{{ url_for('static', filename='LOGO.gif') }}" alt="EtiCAD Logo">
     </div>
     <form id="share-form" class="share-form">
-      <span>Sayfayı e-posta ile paylaş:</span>
+      <span></span>
       <input type="email" id="share-email" placeholder="E-posta adresi" required>
-      <button type="submit">Gönder</button>
+      <button type="submit">Paylaş</button>
     </form>
   </div>
 
-  <h1>ETICAD Masaüstü Sürümü</h1>
+  <h1>EtiCAD Masaüstü Sürümü</h1>
   <div class="sub">
-    Lazer kesim ve mekanik tesisat etiketleri için hızlı DXF üretimi
+    Lazer kesim için DXF etiket üretimi
   </div>
 
   <div class="download-grid">
@@ -279,7 +279,7 @@
       <div class="download-screenshot-main">
         <img id="gallery-main"
              src="{{ url_for('static', filename='1.png') }}"
-             alt="ETICAD ekran görüntüsü">
+             alt="EtiCAD ekran görüntüsü">
       </div>
       <div class="gallery-thumbs">
         <img class="thumb active" data-index="0" src="{{ url_for('static', filename='1.png') }}" alt="Önizleme 1">
@@ -289,9 +289,9 @@
     </div>
 
     <div class="download-text">
-      <h2>Neden masaüstü ETICAD?</h2>
+      <h2>Neden masaüstü EtiCAD?</h2>
       <p>
-        ETICAD masaüstü sürümü, özellikle yoğun etiket üretimi yapan kullanıcılar için geliştirilmiş
+        EtiCAD masaüstü sürümü, özellikle yoğun etiket üretimi yapan kullanıcılar için geliştirilmiş
         tam özellikli bir uygulamadır. DXF çıktılar, lazer kesim tezgâhlarıyla uyumlu olacak şekilde
         sade ve temiz geometrilerle oluşturulur.
       </p>
@@ -309,7 +309,7 @@
 
     <div class="download-card">
       <h3>İndir &amp; Kur</h3>
-      <p><strong>Sürüm:</strong> ETICAD v1.0.0</p>
+      <p><strong>Sürüm:</strong> EtiCAD v1.0.0</p>
       <p><strong>Platform:</strong> Windows (64-bit)</p>
       <p><strong>Kurulum:</strong> Kurulum gerektirmez, tek .exe dosyası</p>
       <a class="download-btn" href="{{ url_for('static', filename='Eticad_v1.0.0.exe') }}">Masaüstü Sürümü İndir</a>
@@ -321,7 +321,7 @@
   </div>
 
   <div class="footer">
-    Online ETICAD sürümünü kullanmak için
+    Online EtiCAD sürümünü kullanmak için
     <a href="{{ url_for('index') }}">buraya tıklayabilirsin</a>.
   </div>
 </div>
@@ -330,7 +330,7 @@
 <div id="lightbox" class="lightbox">
   <div class="lightbox-inner" onclick="event.stopPropagation();">
     <button class="lb-nav lb-prev" type="button">&#10094;</button>
-    <img id="lightbox-img" src="" alt="ETICAD ekran görüntüsü">
+    <img id="lightbox-img" src="" alt="EtiCAD ekran görüntüsü">
     <button class="lb-nav lb-next" type="button">&#10095;</button>
   </div>
 </div>
@@ -346,9 +346,9 @@
       if (!emailInput) return;
       const email = emailInput.value.trim();
       if (!email) return;
-      const subject = encodeURIComponent('ETICAD bağlantısı');
+      const subject = encodeURIComponent('EtiCAD bağlantısı');
       const body = encodeURIComponent(
-        'Merhaba,\n\nETICAD masaüstü indirme sayfasını seninle paylaşıyorum:\n' +
+        'Merhaba,\n\nEtiCAD masaüstü indirme sayfasını seninle paylaşıyorum:\n' +
         window.location.href + '\n\n'
       );
       window.location.href = 'mailto:' + encodeURIComponent(email) +
@@ -420,3 +420,4 @@
 </script>
 </body>
 </html>
+
