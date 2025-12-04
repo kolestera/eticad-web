@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8">
-  <title>EtiCAD - Online DXF Etiket </title>
+  <title>ETICAD - Online Etiket DXF Üretimi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -19,8 +19,45 @@
       padding: 24px 28px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .logo-box img {
+      max-height: 40px;
+      display: block;
+    }
+    .share-form {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 12px;
+    }
+    .share-form input {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #d4d4d8;
+      font-size: 12px;
+      min-width: 180px;
+    }
+    .share-form button {
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: none;
+      font-size: 12px;
+      cursor: pointer;
+      background: #0f766e;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .share-form button:hover {
+      background: #115e56;
+    }
+
     h1 {
-      margin-top: 0;
+      margin: 8px 0 0;
       font-size: 24px;
       text-align: center;
     }
@@ -88,6 +125,26 @@
       font-size: 13px;
       margin-bottom: 4px;
     }
+    .preview-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .preview-frame {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 640px;
+      height: 220px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      overflow: hidden;
+    }
+    .preview-frame svg {
+      max-width: 100%;
+      max-height: 100%;
+    }
     .footer {
       margin-top: 16px;
       font-size: 12px;
@@ -98,40 +155,38 @@
       color: #0f766e;
       text-decoration: none;
     }
-.preview-container {
-  margin-top: 20px;
-  text-align: center;
-}
 
-.preview-frame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 100%;
-  width: 100%;
-  max-width: 700px;     /* Önizleme kutusunun maksimum genişliği */
-  height: 350px;        /* Sabit yükseklik */
-  background: #e5e7eb;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  overflow: hidden;     /* Taşan kısmı göstermesin */
-}
-
-/* SVG’yi kutunun içine sığacak şekilde kısıtla */
-.preview-frame svg {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-    
+    @media (max-width: 640px) {
+      .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .share-form {
+        align-self: stretch;
+        justify-content: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>EtiCAD Online</h1>
+
+  <div class="header-bar">
+    <div class="logo-box">
+      <img src="{{ url_for('static', filename='LOGO.gif') }}" alt="ETICAD Logo">
+    </div>
+    <form id="share-form" class="share-form">
+      <span>Sayfayı e-posta ile paylaş:</span>
+      <input type="email" id="share-email" placeholder="E-posta adresi" required>
+      <button type="submit">Gönder</button>
+    </form>
+  </div>
+
+  <h1>ETICAD Online</h1>
   <div class="sub">
-    Lazer kesim için DXF etiket<br>
+    Lazer kesim için DXF etiket üretimi<br>
+    (Masaüstü ETICAD sürümü ile uyumlu)
   </div>
 
   {% if error %}
@@ -141,7 +196,7 @@
   <form method="post">
     <div>
       <label>En (mm)</label>
-      <input type="text" name="width" value="{{ width|default(100) }}">
+      <input type="text" name="width" value="{{ width|default(300) }}">
     </div>
     <div>
       <label>Boy (mm)</label>
@@ -150,20 +205,20 @@
 
     <div>
       <label>1. Satır Yazı</label>
-      <input type="text" name="line1" value="{{ line1|default('KABLO 1') }}">
+      <input type="text" name="line1" value="{{ line1|default('ETICAD') }}">
     </div>
     <div>
       <label>1. Satır Yükseklik (mm)</label>
-      <input type="text" name="h1" value="{{ h1|default(10) }}">
+      <input type="text" name="h1" value="{{ h1|default(50) }}">
     </div>
 
     <div>
       <label>2. Satır Yazı</label>
-      <input type="text" name="line2" value="{{ line2|default('') }}">
+      <input type="text" name="line2" value="{{ line2|default('NECATI PEHLIVAN') }}">
     </div>
     <div>
       <label>2. Satır Yükseklik (mm)</label>
-      <input type="text" name="h2" value="{{ h2|default(8) }}">
+      <input type="text" name="h2" value="{{ h2|default(25) }}">
     </div>
 
     <div class="full">
@@ -181,32 +236,39 @@
     </div>
   </form>
 
-{% if svg %}
-  <div class="preview-container">
-    <div style="font-size:13px; color:#555; margin-bottom:8px;"></div>
-    <div class="preview-frame">
-      {{ svg|safe }}
+  {% if svg %}
+    <div class="preview-container">
+      <div style="font-size:13px; color:#555; margin-bottom:8px;">Önizleme</div>
+      <div class="preview-frame">
+        {{ svg|safe }}
+      </div>
     </div>
-  </div>
-{% endif %}
-
+  {% endif %}
 
   <div class="footer">
-    Masaüstü EtiCAD sürümünü 
-    <a href="#" >
-      buradan
-    </a>
-    indirebilirsin.
+    Masaüstü ETICAD sürümü için <a href="{{ url_for('download_page') }}">indirme sayfasını</a> ziyaret edebilirsin.
   </div>
 </div>
+
+<script>
+(function () {
+  const form = document.getElementById('share-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const emailInput = document.getElementById('share-email');
+    if (!emailInput) return;
+    const email = emailInput.value.trim();
+    if (!email) return;
+    const subject = encodeURIComponent('ETICAD bağlantısı');
+    const body = encodeURIComponent(
+      'Merhaba,\n\nETICAD Online sayfasını seninle paylaşıyorum:\n' +
+      window.location.href + '\n\n'
+    );
+    window.location.href = 'mailto:' + encodeURIComponent(email) +
+      '?subject=' + subject + '&body=' + body;
+  });
+})();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
