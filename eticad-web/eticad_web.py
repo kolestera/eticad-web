@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 
 def _render_form(error=None, svg=None,
-                 width=100, height=30,
-                 line1="KABLO 1", line2="",
-                 h1=10, h2=8, holes=0):
+                 width=200, height=80,
+                 line1="ETICAD", line2="NECATI PEHLIVAN",
+                 h1=40, h2=20, holes=0):
     return render_template(
         "index.html",
         error=error,
@@ -124,3 +124,4 @@ def preview():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
