@@ -298,19 +298,25 @@ def save_single_dxf(width_mm, height_mm, seg1, seg2, hole_mode, filename):
 # =========================
 # SVG ÖNİZLEME
 # =========================
-
 def build_svg_preview(width_mm, height_mm, seg1, seg2, hole_mode):
     """
     Verilen segmentler ve delik moduna göre etiketin SVG önizlemesini üretir.
+    Önizleme alanı ekranda sabit boyutta (örneğin 420 x 220 px),
+    etiket boyutuna göre ölçekli görünür.
     """
     def t_y(y):
         # SVG'de y aşağı büyüdüğü için aynalıyoruz
         return height_mm - y
 
+    # Sabit piksel ölçüleri (önizleme penceresi)
+    pixel_width = 420
+    pixel_height = 220
+
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" '
         f'viewBox="0 0 {width_mm:.2f} {height_mm:.2f}" '
-        f'width="{width_mm*3:.0f}" height="{height_mm*3:.0f}" '
+        f'width="{pixel_width}" height="{pixel_height}" '
+        f'preserveAspectRatio="xMidYMid meet" '
         f'style="background:#f9fafb;border:1px solid #cbd5e1;">'
         '<g stroke="black" stroke-width="0.4" fill="none">'
     ]
