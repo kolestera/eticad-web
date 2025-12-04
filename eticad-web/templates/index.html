@@ -253,6 +253,20 @@
       </div>
     </div>
   {% endif %}
+<div class="install-block">
+  <div class="install-title">Telefonuna kısayol ekle</div>
+  <div class="install-buttons">
+    <button id="install-android" class="install-btn">
+      <img src="{{ url_for('static', filename='icons/android.png') }}" alt="Android" />
+      <span>Android</span>
+    </button>
+    <button id="install-ios" class="install-btn">
+      <img src="{{ url_for('static', filename='icons/ios.png') }}" alt="iOS" />
+      <span>iOS</span>
+    </button>
+  </div>
+  <div id="install-message" class="install-message" style="display:none;"></div>
+</div>
 
   <div class="footer">
     Masaüstü EtiCAD sürümü için <a href="{{ url_for('download_page') }}">indirme sayfasını</a> ziyaret edebilirsin.
@@ -294,5 +308,6 @@
 
 </body>
 </html>
+
 
 
