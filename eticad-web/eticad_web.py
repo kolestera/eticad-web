@@ -54,6 +54,11 @@ def _render_form(error=None, svg=None,
         holes=holes,
     )
 
+@app.route("/sw.js")
+def service_worker():
+    # static klasöründeki sw.js dosyasını kökten (/sw.js) yayınla
+    return app.send_static_file("sw.js")
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -183,3 +188,4 @@ def download_page():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
