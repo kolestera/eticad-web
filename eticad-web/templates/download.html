@@ -343,18 +343,34 @@
 
   <div class="download-grid">
     <!-- GALERİ -->
-    <div class="download-screenshot">
-      <div class="download-screenshot-main">
-        <img id="gallery-main"
-             src="{{ url_for('static', filename='1.png') }}"
-             alt="EtiCAD ekran görüntüsü">
-      </div>
-      <div class="gallery-thumbs">
-        <img class="thumb active" data-index="0" src="{{ url_for('static', filename='1.png') }}" alt="Önizleme 1">
-        <img class="thumb" data-index="1" src="{{ url_for('static', filename='2.png') }}" alt="Önizleme 2">
-        <img class="thumb" data-index="2" src="{{ url_for('static', filename='3.png') }}" alt="Önizleme 3">
-      </div>
-    </div>
+ <div class="download-screenshot-main">
+  <img id="gallery-main"
+       src="{{ url_for('static', filename='1.png') }}"
+       alt="EtiCAD ekran görüntüsü"
+       data-goatcounter-click="lightbox-open"
+       data-goatcounter-title="Lightbox açılış">
+</div>
+
+<div class="gallery-thumbs">
+  <img class="thumb active" data-index="0"
+       src="{{ url_for('static', filename='1.png') }}"
+       alt="Önizleme 1"
+       data-goatcounter-click="thumb-1"
+       data-goatcounter-title="Galeri: 1. resim">
+
+  <img class="thumb" data-index="1"
+       src="{{ url_for('static', filename='2.png') }}"
+       alt="Önizleme 2"
+       data-goatcounter-click="thumb-2"
+       data-goatcounter-title="Galeri: 2. resim">
+
+  <img class="thumb" data-index="2"
+       src="{{ url_for('static', filename='3.png') }}"
+       alt="Önizleme 3"
+       data-goatcounter-click="thumb-3"
+       data-goatcounter-title="Galeri: 3. resim">
+</div>
+
 
     <div class="download-text">
       <h2>Neden masaüstü EtiCAD?</h2>
@@ -431,9 +447,18 @@
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
   <div class="lightbox-inner" onclick="event.stopPropagation();">
-    <button class="lb-nav lb-prev" type="button">&#10094;</button>
-    <img id="lightbox-img" src="" alt="EtiCAD ekran görüntüsü">
-    <button class="lb-nav lb-next" type="button">&#10095;</button>
+<button class="lb-nav lb-prev" type="button"
+        data-goatcounter-click="lightbox-prev"
+        data-goatcounter-title="Lightbox önceki">
+  &#10094;
+</button>
+
+<button class="lb-nav lb-next" type="button"
+        data-goatcounter-click="lightbox-next"
+        data-goatcounter-title="Lightbox sonraki">
+  &#10095;
+</button>
+
   </div>
 </div>
 
@@ -566,3 +591,4 @@
 
 </body>
 </html>
+
