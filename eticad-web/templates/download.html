@@ -9,11 +9,17 @@
 <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='icons/eticad-192.png') }}">
 <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/eticad-192.png') }}">
 
-
-
   <meta charset="utf-8">
   <title>EtiCAD - Masaüstü Sürüm İndirme</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- GoatCounter Analytics: SENIN_ADIN kısmını kendi kodunla değiştir -->
+  <script
+    data-goatcounter="https://eticad.goatcounter.com/count"
+    data-goatcounter-settings='{"allow_local": true}'
+    async src="//gc.zgo.at/count.js">
+  </script>
+
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -263,57 +269,56 @@
       }
     }
 
-  
-  .install-block {
-  margin-top: 24px;
-  padding: 12px 14px;
-  background: #f3f4f6;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  font-size: 13px;
-}
-.install-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.install-buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.install-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 0;
-  width: 130px;                 /* 🔥 hepsi eşit oldu */
-  justify-content: center;
-  border-radius: 999px;
-  border: 1px solid #d4d4d8;
-  background: #fff;
-  cursor: pointer;
-  font-size: 13px;
-  color: #111;
-  font-weight: 600;
-}
+    .install-block {
+      margin-top: 24px;
+      padding: 12px 14px;
+      background: #f3f4f6;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+    .install-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .install-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .install-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      width: 130px; /* hepsi eşit */
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid #d4d4d8;
+      background: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      color: #111;
+      font-weight: 600;
+    }
 
-.install-btn img {
-  width: 18px;
-  height: 18px;
-}
-.install-btn:hover {
-  background: #e5e7eb;
-}
-.install-message {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #4b5563;
-}
-@media (max-width: 640px) {
-  .install-buttons {
-    justify-content: flex-start;
-  }
-}
+    .install-btn img {
+      width: 18px;
+      height: 18px;
+    }
+    .install-btn:hover {
+      background: #e5e7eb;
+    }
+    .install-message {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #4b5563;
+    }
+    @media (max-width: 640px) {
+      .install-buttons {
+        justify-content: flex-start;
+      }
+    }
 
   </style>
 </head>
@@ -375,31 +380,48 @@
       <p><strong>Sürüm:</strong> EtiCAD v1.0.0</p>
       <p><strong>Platform:</strong> Windows (64-bit)</p>
       <p><strong>Kurulum:</strong> Kurulum gerektirmez, tek .exe dosyası</p>
-      <a class="download-btn" href="{{ url_for('static', filename='Eticad_v1.0.0.exe') }}">Masaüstü Sürümü İndir</a>
+      <!-- İndirme butonu: GoatCounter event -->
+      <a class="download-btn"
+         href="{{ url_for('static', filename='Eticad_v1.0.0.exe') }}"
+         data-goatcounter-click="exe-indirme"
+         data-goatcounter-title="Masaüstü EXE indirme">
+         Masaüstü Sürümü İndir
+      </a>
       <p style="margin-top:10px; font-size:12px; color:#6b7280;">
         Not: Bazı antivirüs yazılımları, internetten indirilen .exe dosyaları için uyarı verebilir.
         Dosya sadece yerel DXF üretimi yapar, internet bağlantısı kullanmaz.
       </p>
     </div>
   </div>
-<div class="install-block">
-  <div class="install-title">Uygulamayı cihazına ekle</div>
-  <div class="install-buttons">
-    <button id="install-windows" class="install-btn">
-      <img src="{{ url_for('static', filename='icons/windows.png') }}" alt="Windows" />
-      <span>Windows</span>
-    </button>
-    <button id="install-android" class="install-btn">
-      <img src="{{ url_for('static', filename='icons/android.png') }}" alt="Android" />
-      <span>Android</span>
-    </button>
-    <button id="install-ios" class="install-btn">
-      <img src="{{ url_for('static', filename='icons/ios.png') }}" alt="iOS" />
-      <span>iOS</span>
-    </button>
+
+  <div class="install-block">
+    <div class="install-title">Uygulamayı cihazına ekle</div>
+    <div class="install-buttons">
+      <!-- Windows: GoatCounter event -->
+      <button id="install-windows" class="install-btn"
+              data-goatcounter-click="install-windows"
+              data-goatcounter-title="Windows kısayol butonu">
+        <img src="{{ url_for('static', filename='icons/windows.png') }}" alt="Windows" />
+        <span>Windows</span>
+      </button>
+      <!-- Android: GoatCounter event -->
+      <button id="install-android" class="install-btn"
+              data-goatcounter-click="install-android"
+              data-goatcounter-title="Android kısayol butonu">
+        <img src="{{ url_for('static', filename='icons/android.png') }}" alt="Android" />
+        <span>Android</span>
+      </button>
+      <!-- iOS: GoatCounter event -->
+      <button id="install-ios" class="install-btn"
+              data-goatcounter-click="install-ios"
+              data-goatcounter-title="iOS kısayol butonu">
+        <img src="{{ url_for('static', filename='icons/ios.png') }}" alt="iOS" />
+        <span>iOS</span>
+      </button>
+    </div>
+    <div id="install-message" class="install-message" style="display:none;"></div>
   </div>
-  <div id="install-message" class="install-message" style="display:none;"></div>
-</div>
+
   <div class="footer">
     Online EtiCAD sürümünü kullanmak için
     <a href="{{ url_for('index') }}">buraya tıklayabilirsin</a>.
@@ -542,14 +564,5 @@
   }
 </script>
 
-
-
-
 </body>
 </html>
-
-
-
-
-
-
