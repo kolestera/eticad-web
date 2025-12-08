@@ -13,10 +13,9 @@
   <title>EtiCAD - Masaüstü Sürüm İndirme</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- GoatCounter Analytics: SENIN_ADIN kısmını kendi kodunla değiştir -->
+  <!-- GoatCounter Analytics: SENIN_ADIN kısmını kendi alt alan adınla değiştir -->
   <script
-    data-goatcounter="https://eticad.goatcounter.com/count"
-    data-goatcounter-settings='{"allow_local": true}'
+    data-goatcounter="https://SENIN_ADIN.goatcounter.com/count"
     async src="//gc.zgo.at/count.js">
   </script>
 
@@ -291,7 +290,7 @@
       align-items: center;
       gap: 6px;
       padding: 6px 0;
-      width: 130px; /* hepsi eşit */
+      width: 130px;
       justify-content: center;
       border-radius: 999px;
       border: 1px solid #d4d4d8;
@@ -343,34 +342,18 @@
 
   <div class="download-grid">
     <!-- GALERİ -->
- <div class="download-screenshot-main">
-  <img id="gallery-main"
-       src="{{ url_for('static', filename='1.png') }}"
-       alt="EtiCAD ekran görüntüsü"
-       data-goatcounter-click="lightbox-open"
-       data-goatcounter-title="Lightbox açılış">
-</div>
-
-<div class="gallery-thumbs">
-  <img class="thumb active" data-index="0"
-       src="{{ url_for('static', filename='1.png') }}"
-       alt="Önizleme 1"
-       data-goatcounter-click="thumb-1"
-       data-goatcounter-title="Galeri: 1. resim">
-
-  <img class="thumb" data-index="1"
-       src="{{ url_for('static', filename='2.png') }}"
-       alt="Önizleme 2"
-       data-goatcounter-click="thumb-2"
-       data-goatcounter-title="Galeri: 2. resim">
-
-  <img class="thumb" data-index="2"
-       src="{{ url_for('static', filename='3.png') }}"
-       alt="Önizleme 3"
-       data-goatcounter-click="thumb-3"
-       data-goatcounter-title="Galeri: 3. resim">
-</div>
-
+    <div class="download-screenshot">
+      <div class="download-screenshot-main">
+        <img id="gallery-main"
+             src="{{ url_for('static', filename='1.png') }}"
+             alt="EtiCAD ekran görüntüsü">
+      </div>
+      <div class="gallery-thumbs">
+        <img class="thumb active" data-index="0" src="{{ url_for('static', filename='1.png') }}" alt="Önizleme 1">
+        <img class="thumb" data-index="1" src="{{ url_for('static', filename='2.png') }}" alt="Önizleme 2">
+        <img class="thumb" data-index="2" src="{{ url_for('static', filename='3.png') }}" alt="Önizleme 3">
+      </div>
+    </div>
 
     <div class="download-text">
       <h2>Neden masaüstü EtiCAD?</h2>
@@ -396,12 +379,11 @@
       <p><strong>Sürüm:</strong> EtiCAD v1.0.0</p>
       <p><strong>Platform:</strong> Windows (64-bit)</p>
       <p><strong>Kurulum:</strong> Kurulum gerektirmez, tek .exe dosyası</p>
-      <!-- İndirme butonu: GoatCounter event -->
       <a class="download-btn"
          href="{{ url_for('static', filename='Eticad_v1.0.0.exe') }}"
          data-goatcounter-click="exe-indirme"
          data-goatcounter-title="Masaüstü EXE indirme">
-         Masaüstü Sürümü İndir
+        Masaüstü Sürümü İndir
       </a>
       <p style="margin-top:10px; font-size:12px; color:#6b7280;">
         Not: Bazı antivirüs yazılımları, internetten indirilen .exe dosyaları için uyarı verebilir.
@@ -413,21 +395,18 @@
   <div class="install-block">
     <div class="install-title">Uygulamayı cihazına ekle</div>
     <div class="install-buttons">
-      <!-- Windows: GoatCounter event -->
       <button id="install-windows" class="install-btn"
               data-goatcounter-click="install-windows"
               data-goatcounter-title="Windows kısayol butonu">
         <img src="{{ url_for('static', filename='icons/windows.png') }}" alt="Windows" />
         <span>Windows</span>
       </button>
-      <!-- Android: GoatCounter event -->
       <button id="install-android" class="install-btn"
               data-goatcounter-click="install-android"
               data-goatcounter-title="Android kısayol butonu">
         <img src="{{ url_for('static', filename='icons/android.png') }}" alt="Android" />
         <span>Android</span>
       </button>
-      <!-- iOS: GoatCounter event -->
       <button id="install-ios" class="install-btn"
               data-goatcounter-click="install-ios"
               data-goatcounter-title="iOS kısayol butonu">
@@ -447,18 +426,9 @@
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox">
   <div class="lightbox-inner" onclick="event.stopPropagation();">
-<button class="lb-nav lb-prev" type="button"
-        data-goatcounter-click="lightbox-prev"
-        data-goatcounter-title="Lightbox önceki">
-  &#10094;
-</button>
-
-<button class="lb-nav lb-next" type="button"
-        data-goatcounter-click="lightbox-next"
-        data-goatcounter-title="Lightbox sonraki">
-  &#10095;
-</button>
-
+    <button class="lb-nav lb-prev" type="button">&#10094;</button>
+    <img id="lightbox-img" src="" alt="EtiCAD ekran görüntüsü">
+    <button class="lb-nav lb-next" type="button">&#10095;</button>
   </div>
 </div>
 
@@ -591,4 +561,3 @@
 
 </body>
 </html>
-
